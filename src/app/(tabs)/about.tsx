@@ -1,9 +1,11 @@
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, TextInput, ActivityIndicatorBase, ActivityIndicator } from "react-native";
+import { Image } from "expo-image";
 
-export default function Index() {
+export default function About() {
   return (
     <View style={styles.container}>
       <Text>Edit src/app/index.tsx to edit this screen.</Text>
+      
     </View>
   );
 }
@@ -14,4 +16,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  image : {
+    width: 100,
+    height: 100,
+    marginTop: 20,
+  }
 });
