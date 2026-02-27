@@ -1,13 +1,9 @@
-import { Text, View, StyleSheet, TextInput, ActivityIndicatorBase, ActivityIndicator , Button} from "react-native";
-import { Image } from "expo-image";
-import { Link, useRouter } from "expo-router";
+import { Text, View, StyleSheet} from "react-native";
 
 export default function Index() {
-  const router = useRouter();
   return (
     <View style={styles.container}>
-      <Text>Edit src/app/index.tsx to edit this screen.</Text>
-      
+      <Text>Hello World!</Text>
     </View>
   );
 }

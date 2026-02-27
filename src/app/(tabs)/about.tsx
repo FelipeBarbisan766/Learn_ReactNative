@@ -1,5 +1,4 @@
-import { Text, View, StyleSheet, TextInput, ActivityIndicatorBase, ActivityIndicator } from "react-native";
-import { Image } from "expo-image";
+import { Text, View, StyleSheet} from "react-native";
 
 export default function About() {
   return (
