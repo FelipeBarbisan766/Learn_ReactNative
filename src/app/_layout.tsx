@@ -1,22 +1,33 @@
-import { Stack, useRouter } from "expo-router";
-import { useEffect } from "react";
+import { Stack, useRouter, useRootNavigationState } from "expo-router";
+import { useEffect, useRef } from "react";
 
 export default function RootLayout() {
   const router = useRouter();
+  const navState = useRootNavigationState();
 
-  let isAuth = false;
+  const authLoading = false;
+  const isAuth = false;
+
+  const redirected = useRef(false);
+
   useEffect(() => {
-    if (!isAuth) {
-      router.replace('/(auth)/login');
-    } else {
-      router.replace('/(tabs)');
-    }
-  });
+    // Wait for the root navigator to be mounted
+    if (!navState?.key) return;
+
+    if (authLoading) return;
+    if (redirected.current) return;
+
+    redirected.current = true;
+    router.replace(isAuth ? "/(tabs)" : "/(auth)/login");
+    // IMPORTANT: do not include `router` in deps
+  }, [navState?.key, authLoading, isAuth]);
+
+  if (authLoading) return null;
 
   return (
-    <Stack>
-      <Stack.Screen name="(tabs)"/>
-      <Stack.Screen name="(auth)"/>
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="(tabs)" />
+      <Stack.Screen name="(auth)" />
     </Stack>
   );
 }
