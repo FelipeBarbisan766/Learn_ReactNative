@@ -1,9 +1,76 @@
-import { View, Text } from "react-native";
+import { useRouter } from "expo-router";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function Signup() {
+export default function SignupScreen() {
+  const router = useRouter();
   return (
-    <View>
-      <Text>Signup</Text>
-    </View>
+    <SafeAreaView edges={["top", "bottom"]} style={styles.container}>
+      <View style={styles.content}>
+        <Text style={styles.title}>Signup Screen</Text>
+        <View style={styles.form}>
+          <TextInput placeholder="Email" placeholderTextColor={"#999"} keyboardType="email-address" autoComplete="email" autoCapitalize="none" style={styles.input} />
+          <TextInput placeholder="Password" placeholderTextColor={"#999"} secureTextEntry={true} autoCapitalize="none" style={styles.input} />
+          <TouchableOpacity style={styles.button}>
+            <Text style={styles.buttonText}>Signup</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.linkButton} onPress={() => router.push("/login")}>
+            <Text style={styles.linkButtonText}>Already have an account? <Text style={styles.linkButtonTextBold}>Login</Text></Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  content: {
+    flex: 1,
+    justifyContent: "center",
+    padding:24
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: "bold",
+    marginBottom: 8,
+},
+form : {
+    width: "100%",
+},
+input : {
+    backgroundColor: "#f5f5f5",
+    borderRadius: 12,
+    padding: 16,
+    fontSize: 16,
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: "#e0e0e0",
+},
+button : {
+    backgroundColor: "#000",
+    borderRadius: 12,
+    padding: 16,
+    alignItems: "center",
+},
+buttonText : {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "600",
+},
+linkButton : {
+    marginTop: 24,
+    alignItems: "center",
+},
+linkButtonText : {
+    color: "#666",
+    fontSize: 14,
+},
+linkButtonTextBold : {
+    fontWeight: "600",
+    color: "#000",
+}
+
+});
